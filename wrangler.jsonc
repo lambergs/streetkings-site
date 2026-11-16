@@ -10,5 +10,10 @@
     "run_worker_first": ["/api/*"]
   },
   "observability": { "enabled": true },
+  // plain settings live here; DISCORD_BOT_TOKEN and DISCORD_WEBHOOK stay as Secrets in the dashboard only
+  "vars": {
+    "CFX_CODE": "bdx4xpl",
+    "GALLERY_CHANNEL_ID": "1446504811557032167"
+  },
   "keep_vars": true
 }
