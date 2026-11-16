@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StreetKings Roleplay | Cars &amp; Lifestyle</title>
+  <meta name="description" content="StreetKings Roleplay is a FiveM city built around cars and lifestyle. Build project cars, tune them, race the drag strip and run your own business. Fuel your soul, drive your dreams.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="StreetKings Roleplay | Cars &amp; Lifestyle">
+  <meta property="og:description" content="Fuel your soul, drive your dreams. A FiveM city built around cars and lifestyle.">
+  <meta property="og:image" content="https://streetkings-site.eastla.workers.dev/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#070707">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/hero.webp">
+  <link rel="stylesheet" href="assets/style.css?v=7">
+  <!-- Three.js for the 3D showroom. Pinned version; the page works without it. -->
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+  </script>
+</head>
+<body>
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <img src="assets/wordmark.webp" alt="" width="280" height="78">
+    <div class="pre-bar"><i></i></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="StreetKings Roleplay, back to top">
+      <img src="assets/wordmark.webp" alt="StreetKings" width="140" height="39">
+    </a>
+    <nav class="links" id="links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#roleplay">Roleplay</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#rules">Rules</a>
+      <a href="#join">Join</a>
+    </nav>
+    <div class="nav-right">
+      <span class="chip" id="navStatus" hidden><i class="dot"></i><b></b></span>
+      <a class="btn btn-accent btn-sm" data-link="connect" href="#join" target="_blank" rel="noopener">Join the city</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ───────────── HERO ───────────── -->
+    <section class="hero" id="hero">
+      <div class="hero-poster" id="heroPoster"></div>
+      <canvas class="hero-canvas" id="stage" aria-hidden="true"></canvas>
+      <div class="hero-shade"></div>
+
+      <div class="hero-in">
+        <div class="hero-copy">
+          <p class="kicker rise"><span></span>StreetKings Roleplay</p>
+          <h1 class="rise">Fuel your soul.<br>Drive your dreams.</h1>
+          <p class="lead rise">A FiveM city built around cars and lifestyle. Pull a wreck off the lot, build it your way, then run it at the strip.</p>
+          <div class="cta rise">
+            <a class="btn btn-accent" data-link="connect" href="#join" target="_blank" rel="noopener">Join our server
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-ghost" data-link="discord" href="#community" target="_blank" rel="noopener">Join our Discord</a>
+          </div>
+          <div class="chip chip-lg rise" id="status" hidden><i class="dot"></i><b id="statusText"></b></div>
+        </div>
+
+        <a class="hero-card" id="heroCard" href="#featured" hidden>
+          <span class="hc-img"><img id="heroCardImg" alt=""></span>
+          <span class="hc-body">
+            <small>Build of the week</small>
+            <b id="heroCardBy"></b>
+          </span>
+          <span class="hc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"/></svg></span>
+        </a>
+        <div class="hero-ctrl" id="heroCtrl" hidden>
+          <div class="ctrl-cap"><small id="ctrlKicker"></small><b id="ctrlTitle"></b></div>
+          <button class="lb-btn" id="ctrlPrev" type="button" aria-label="Previous picture in the showroom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="lb-btn" id="ctrlNext" type="button" aria-label="Next picture in the showroom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <span class="ctrl-hint">Drag to turn</span>
+        </div>
+      </div>
+
+      <div class="hero-bar">
+        <a href="#gallery"><span>See the gallery</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#join"><span>How to join</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+
+    <!-- ───────────── LIVE NUMBERS ───────────── -->
+    <section class="band" id="numbers" hidden>
+      <div class="wrap band-grid">
+        <div class="band-intro reveal">
+          <p class="kicker"><span></span>Live numbers</p>
+          <h2 class="h3">The city, right now.</h2>
+          <p class="muted">Read live from the server and our Discord. Nothing here is made up.</p>
+        </div>
+        <div class="stats reveal" id="stats">
+          <div class="stat" data-stat="players" hidden><b data-count>0</b><span>In the city now</span></div>
+          <div class="stat" data-stat="slots" hidden><b data-count>0</b><span>Server slots</span></div>
+          <div class="stat" data-stat="members" hidden><b data-count>0</b><span>Discord members</span></div>
+          <div class="stat" data-stat="online" hidden><b data-count>0</b><span>Online on Discord</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── ABOUT ───────────── -->
+    <section class="block" id="about">
+      <div class="wrap two">
+        <div class="reveal">
+          <p class="kicker"><span></span>About StreetKings</p>
+          <h2>A city built around the car.</h2>
+          <p class="body">StreetKings is a car community first. Where you find a car, how you fix it, how you tune it and where you show it off are all part of the roleplay.</p>
+          <p class="body">Around the cars is a full city: shops run by players, police and medics on duty, jobs to grind and places to hang out. Come for the builds, stay for the people.</p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Real wear</b><span>Parts, tyres and fluids wear out and need a mechanic.</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Player run</b><span>Shops, garages and businesses are owned and staffed by players.</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Earned, not given</b><span>Money and progress are checked by the server. No shortcuts.</span></div></li>
+          </ul>
+          <a class="btn btn-ghost" href="#features">See what you can do
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <figure class="about-art reveal" data-tilt>
+          <img src="assets/hero.webp" alt="A red Honda Civic coupe parked in a lot in the StreetKings city" loading="lazy" width="1919" height="1013">
+          <figcaption><i class="dot on"></i>Shot in the city</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Fuel your soul</span><span>Drive your dreams</span><span>Cars &amp; lifestyle</span><span>StreetKings Roleplay</span>
+        <span>Fuel your soul</span><span>Drive your dreams</span><span>Cars &amp; lifestyle</span><span>StreetKings Roleplay</span>
+      </div>
+    </div>
+
+    <!-- ───────────── FEATURES ───────────── -->
+    <section class="block" id="features">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker"><span></span>Features</p>
+          <h2>Everything the city runs on.</h2>
+          <p class="muted">Every item below is a system running on the server today.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.2 5.2L3 18l3 3 6.5-6.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></span>
+            <h3>Project cars</h3>
+            <p>Buy a wreck from the scrapyard, find its hidden faults, strip it bolt by bolt and rebuild it into a registered street car.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0M12 18l4-6M12 10V8"/></svg></span>
+            <h3>Tuning and stance</h3>
+            <p>Engine, gearbox and suspension upgrades, plus stance and fitment work to get the look exactly right.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></span>
+            <h3>Drag strips</h3>
+            <p>Staging beams, a Christmas tree, timeslips and ranked boards. Bracket racing, buy-ins, bets and tournaments.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></span>
+            <h3>Mechanic shops</h3>
+            <p>Parts wear out. Mechanics diagnose, repair, tune and bill for the work, and a neglected car lets you know.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M12 5v14M18 5v7M6 12h12"/><circle cx="6" cy="5" r="1.5"/><circle cx="12" cy="5" r="1.5"/><circle cx="18" cy="5" r="1.5"/></svg></span>
+            <h3>Manual gearbox</h3>
+            <p>Row your own gears with a shift light on the dash. Your launches and shifts show up on the timeslip.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9l1-5h14l1 5M4 9v11h16V9M4 9h16M9 20v-6h6v6"/></svg></span>
+            <h3>Player-owned businesses</h3>
+            <p>Open a shop, hire a crew, set the menu and prices, run the register and pay your staff from the books.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.100-8-4.500-8-9V6z"/></svg></span>
+            <h3>Police and EMS</h3>
+            <p>Officers and medics are players on duty, with dispatch calls, a full station and a working hospital.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v12H3zM8 8V5h8v3M3 13h18"/></svg></span>
+            <h3>Jobs and hustles</h3>
+            <p>Fishing, mining, fruit picking, recycling and towing. Honest work that pays for the next set of parts.</p>
+          </article>
+          <article class="card reveal" data-tilt>
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.500 3 14.500 0 18M12 3c-3 3.500-3 14.500 0 18"/></svg></span>
+            <h3>Life off the road</h3>
+            <p>Basketball, pool, pickleball, paintball, the gym, videoke, the casino, camping and a house of your own.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── ROLEPLAY ───────────── -->
+    <section class="block alt" id="roleplay">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker"><span></span>Roleplay</p>
+          <h2>Pick your lane.</h2>
+          <p class="muted">Nobody plays the same story. These are the ones people start with.</p>
+        </div>
+        <div class="lanes reveal" id="lanes">
+          <article class="lane on" tabindex="0">
+            <span class="lane-no">01</span>
+            <h3>The racer</h3>
+            <p>Chase a number at the strip. Cut a better light, tune for the tyre and put your name on the board.</p>
+          </article>
+          <article class="lane" tabindex="0">
+            <span class="lane-no">02</span>
+            <h3>The builder</h3>
+            <p>Hunt the scrapyard for the right shell, source the parts and bring a dead car back to the street.</p>
+          </article>
+          <article class="lane" tabindex="0">
+            <span class="lane-no">03</span>
+            <h3>The mechanic</h3>
+            <p>Work a bay, earn a name for clean work and keep the city's builds running and billed.</p>
+          </article>
+          <article class="lane" tabindex="0">
+            <span class="lane-no">04</span>
+            <h3>The owner</h3>
+            <p>Run a business. Hire, stock, price and serve, and watch the account grow or sink on your calls.</p>
+          </article>
+          <article class="lane" tabindex="0">
+            <span class="lane-no">05</span>
+            <h3>The officer</h3>
+            <p>Take the calls, patrol the streets and keep the meets from turning into something worse.</p>
+          </article>
+          <article class="lane" tabindex="0">
+            <span class="lane-no">06</span>
+            <h3>The medic</h3>
+            <p>Be the one who shows up. Treat the injured on scene and get them back on their feet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── BUILD OF THE WEEK ───────────── -->
+    <section class="block" id="featured" hidden>
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker"><span></span>The garage</p>
+          <h2>Build of the week.</h2>
+        </div>
+        <article class="feat reveal">
+          <button class="feat-img" id="featOpen" type="button" aria-label="Open the featured build"><img id="featImg" alt=""></button>
+          <div class="feat-body">
+            <div class="feat-by"><img id="featAvatar" alt="" hidden><div><small>Built by</small><b id="featAuthor"></b></div></div>
+            <p id="featCaption"></p>
+            <div class="feat-more" id="featMore"></div>
+            <p class="muted small">Staff pick the best post in our Discord #gallery. Post yours to be next.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ───────────── LEADERBOARD ───────────── -->
+    <section class="block alt" id="leaderboard">
+      <div class="wrap">
+        <div class="head head-row reveal">
+          <div>
+            <p class="kicker"><span></span>Drag strip</p>
+            <h2>Fastest in the city.</h2>
+          </div>
+          <p class="muted small" id="lbUpdated"></p>
+        </div>
+        <div class="lb-tabs reveal" id="lbTabs" role="tablist"></div>
+        <div class="lb-grid reveal">
+          <div class="panel lb-card">
+            <table class="lb-table">
+              <thead><tr><th>#</th><th>Driver</th><th>Car</th><th>Time</th><th class="hide-sm">Trap</th><th class="hide-sm">RT</th><th class="hide-sm">Date</th></tr></thead>
+              <tbody id="lbBody"><tr><td colspan="7" class="muted center">Loading times</td></tr></tbody>
+            </table>
+          </div>
+          <aside class="panel lb-elo" id="lbEloCard" hidden>
+            <h3>Top racers</h3>
+            <p class="muted small">Rating from head-to-head races</p>
+            <ol id="lbElo"></ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── GALLERY ───────────── -->
+    <section class="block" id="gallery">
+      <div class="wrap">
+        <div class="head head-row reveal">
+          <div>
+            <p class="kicker"><span></span>Gallery</p>
+            <h2>Straight from the city.</h2>
+          </div>
+          <a class="btn btn-ghost btn-sm" data-link="discord" href="#community" target="_blank" rel="noopener">Post yours in #gallery</a>
+        </div>
+        <div class="shots" id="galleryGrid"></div>
+        <p class="muted center" id="galleryEmpty" hidden>The gallery fills up from our Discord #gallery channel. Join and post your best shots.</p>
+        <div class="more-row">
+          <span class="muted small" id="galleryCount"></span>
+          <button class="btn btn-ghost" id="galleryMore" type="button" hidden>Load more</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── RULES ───────────── -->
+    <section class="block" id="rules">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker"><span></span>City rules</p>
+          <h2>Know them before you play.</h2>
+          <p class="muted">Everyone gets the same city. Tap a rule to read it.</p>
+        </div>
+        <div class="rules">
+          <details class="rule reveal"><summary><span>01</span>OOC (out of character)<i aria-hidden="true"></i></summary><ul><li>Stay in character while in the city.</li><li>Do not talk about real-life or OOC topics during RP.</li></ul></details>
+          <details class="rule reveal"><summary><span>02</span>Voice recognition<i aria-hidden="true"></i></summary><ul><li>You cannot identify someone just by their voice if they are wearing a mask or helmet.</li></ul></details>
+          <details class="rule reveal"><summary><span>03</span>Combat logging<i aria-hidden="true"></i></summary><ul><li>Do not leave, disconnect or quit during RP or combat.</li></ul></details>
+          <details class="rule reveal"><summary><span>04</span>Meta gaming<i aria-hidden="true"></i></summary><ul><li>Do not use information from outside the game to help your character.</li><li>Do not use Discord, Facebook, streams or other apps for in-game information.</li><li>Do not use Toggle ID to see players through walls or tinted vehicle windows.</li></ul></details>
+          <details class="rule reveal"><summary><span>05</span>Power gaming<i aria-hidden="true"></i></summary><ul><li>Always act realistically.</li><li>No talking while unconscious.</li><li>No using /me to force an outcome.</li><li>No ignoring danger or fear.</li><li>No cancelling or spamming emotes to gain an advantage.</li><li>No returning to a situation after being downed.</li><li>No carrying someone while running if it is unrealistic.</li><li>No claiming unrealistic abilities.</li></ul></details>
+          <details class="rule reveal"><summary><span>06</span>New Life Rule (NLR)<i aria-hidden="true"></i></summary><ul><li>If you respawn after being downed, forget everything that caused you to be downed.</li><li>Do not return to the scene after respawning.</li><li>Do not force someone to respawn without a valid reason.</li><li>Do not use phrases like “Nag-see-the-light ako” to avoid NLR.</li><li>Do not keep dead bodies for more than 30 minutes.</li><li>You may remember what happened after checking into the hospital.</li></ul></details>
+          <details class="rule reveal"><summary><span>07</span>RDM<i aria-hidden="true"></i></summary><ul><li>Do not randomly kill someone without a valid RP reason.</li></ul></details>
+          <details class="rule reveal"><summary><span>08</span>VDM<i aria-hidden="true"></i></summary><ul><li>Do not intentionally use a vehicle to kill or injure someone without a valid RP reason.</li></ul></details>
+          <details class="rule reveal"><summary><span>09</span>Value of life / Fear RP<i aria-hidden="true"></i></summary><ul><li>Your character must value their life.</li><li>If someone points a gun at you, comply unless you have a clear chance to escape or fight back.</li><li>Do not overkill downed or dead players.</li><li>Try RP before starting violence.</li><li>Do not randomly start shootouts at police stations or hospitals.</li><li>Do not provoke police, gangs or armed players without a valid RP reason.</li><li>Do not jump into situations that do not involve you.</li><li>After a violent situation, give others time to recover.</li><li>RP should stop after a tsunami.</li></ul></details>
+          <details class="rule reveal"><summary><span>10</span>Force RP<i aria-hidden="true"></i></summary><ul><li>Do not control another player&#x27;s character or force actions on them.</li><li>Do not force yourself into specialized roles such as police, doctor or mechanic.</li><li>Do not kill someone simply because they are vulnerable or distracted.</li></ul></details>
+          <details class="rule reveal"><summary><span>11</span>Common sense / Enough is enough<i aria-hidden="true"></i></summary><ul><li>Do not treat RP like a competition.</li><li>Use common sense.</li><li>Just because something is possible in real life does not mean it is allowed in RP.</li><li>Keep RP fun for everyone.</li></ul></details>
+          <details class="rule reveal"><summary><span>12</span>Assuming / False accusations<i aria-hidden="true"></i></summary><ul><li>Do not create drama based on assumptions.</li><li>Let Guardians and staff handle reports.</li><li>False accusations or claims without proof may result in a ban.</li></ul></details>
+          <details class="rule reveal"><summary><span>13</span>Cop baiting<i aria-hidden="true"></i></summary><ul><li>Do not purposely attract police attention just to get chased.</li><li>No fake or spam 911 calls.</li><li>No unnecessary drifting, burnouts or revving near police.</li><li>Do not purposely break traffic laws around police to start a chase.</li></ul></details>
+          <details class="rule reveal"><summary><span>14</span>RMT (real money trading)<i aria-hidden="true"></i></summary><ul><li>Buying or selling in-game items, cars, houses or services with real money is only allowed through official channels.</li><li>Unauthorized RMT will result in a permanent ban.</li></ul></details>
+          <details class="rule reveal"><summary><span>15</span>Vouching<i aria-hidden="true"></i></summary><ul><li>Only vouch for people you actually know.</li><li>If someone you vouched for gets banned, you may also receive a sanction.</li><li>1st offense: verbal warning and 100 minutes jail.</li></ul></details>
+          <details class="rule reveal"><summary><span>16</span>Club cars<i aria-hidden="true"></i></summary><ul><li>If a member leaves a club while having a club car, the club leader must make a ticket.</li><li>Admins will reclaim the vehicle and return it to the club.</li></ul></details>
+          <details class="rule reveal"><summary><span>17</span>Sidejob robbery<i aria-hidden="true"></i></summary><ul><li>Do not wait outside side jobs just to rob players.</li><li>Report anyone breaking this rule through a ticket.</li><li>Robbery is allowed during the evening.</li><li>Use the designated garages to store your vehicles.</li></ul></details>
+          <details class="rule reveal"><summary><span>18</span>Exclusive vehicles<i aria-hidden="true"></i></summary><ul><li>No animated cars.</li><li>No glowing or unrealistic lighting effects.</li><li>Have custom car files checked by an Admin or Car Developer before paying.</li><li>Unchecked files may be rejected or cause vehicle problems.</li></ul></details>
+          <details class="rule reveal"><summary><span>19</span>Death from accident or hunger<i aria-hidden="true"></i></summary><ul><li>If you die from an accident or hunger, use /callmedic. You must have a phone to use it.</li><li>Keep your hunger filled and take care of your character.</li><li>Do not use /report or Help Desk for deaths caused by your own accident or hunger.</li><li>For other deaths, you may contact staff through Help Desk or /report.</li><li>Always stay in character and accept the consequences of your actions.</li></ul></details>
+          <details class="rule reveal"><summary><span>20</span>Name change<i aria-hidden="true"></i></summary><ul><li>Your requested name must match your in-game character name.</li><li>Name changes cost ₱1,000,000 in-game money.</li><li>Double-check your name before submitting a request.</li></ul></details>
+          <details class="rule reveal"><summary><span>21</span>Drug selling<i aria-hidden="true"></i></summary><ul><li>Use a 4-door vehicle or a Car-D vehicle. 2-door vehicles and exclusive cars are prohibited.</li><li>The vehicle may have 1 to 4 occupants during the transaction.</li><li>Skateboards, bicycles and motorcycles are prohibited.</li><li>Failure to comply will result in sanctions.</li></ul></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── JOIN ───────────── -->
+    <section class="block alt" id="join">
+      <div class="wrap two two-top">
+        <div class="reveal">
+          <p class="kicker"><span></span>How to join</p>
+          <h2>Four steps to the streets.</h2>
+          <ol class="steps">
+            <li><b>Get FiveM</b><span>Own GTA V on PC and install FiveM from <a href="https://fivem.net" target="_blank" rel="noopener">fivem.net</a>.</span></li>
+            <li><b>Join our Discord</b><span>Announcements, rules and support all live there.</span></li>
+            <li><b>Read the rules</b><span>Know <a href="#rules">the city rules</a> before you play. Everyone gets the same city.</span></li>
+            <li><b>Connect</b><span>Hit Join our server, or paste the connect command into the FiveM console (F8).</span></li>
+          </ol>
+        </div>
+        <aside class="panel server reveal" aria-label="Server information">
+          <div class="server-top">
+            <div><small>Server</small><b>StreetKings Roleplay</b></div>
+            <span class="chip" id="srvChip"><i class="dot"></i><b id="srvState">Checking</b></span>
+          </div>
+          <div class="server-meter" id="srvMeter" hidden>
+            <div class="meter-row"><span>Players</span><b id="srvPlayers"></b></div>
+            <div class="meter"><i id="srvFill"></i></div>
+          </div>
+          <dl class="server-list">
+            <div><dt>Platform</dt><dd>FiveM, GTA V on PC</dd></div>
+            <div><dt>Framework</dt><dd>Qbox</dd></div>
+            <div id="srvConnectRow" hidden><dt>Console</dt><dd><code id="srvCmd"></code><button class="copy" id="srvCopy" type="button">Copy</button></dd></div>
+          </dl>
+          <div class="cta">
+            <a class="btn btn-accent" data-link="connect" href="#join" target="_blank" rel="noopener">Join our server</a>
+            <a class="btn btn-ghost" data-link="discord" href="#community" target="_blank" rel="noopener">Join our Discord</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ───────────── TEAM ───────────── -->
+    <section class="block alt" id="team">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="kicker"><span></span>The team</p>
+          <h2>The people behind the city.</h2>
+        </div>
+        <div class="team">
+          <div class="team-group reveal"><h3>Owner</h3><ul><li><span class="avatar" aria-hidden="true">T</span>Tabyug</li></ul></div>
+          <div class="team-group reveal"><h3>Developers</h3><ul><li><span class="avatar" aria-hidden="true">C</span>Cigrid</li><li><span class="avatar" aria-hidden="true">P</span>Pedro</li></ul></div>
+          <div class="team-group reveal"><h3>Admins</h3><ul><li><span class="avatar" aria-hidden="true">I</span>Ibarra</li><li><span class="avatar" aria-hidden="true">K</span>Kulas</li><li><span class="avatar" aria-hidden="true">B</span>Borj</li><li><span class="avatar" aria-hidden="true">D</span>Dewayne</li><li><span class="avatar" aria-hidden="true">E</span>Estafa</li></ul></div>
+          <div class="team-group reveal"><h3>Moderators</h3><ul><li><span class="avatar" aria-hidden="true">W</span>Wayo</li><li><span class="avatar" aria-hidden="true">M</span>Midnight</li></ul></div>
+          <div class="team-group reveal"><h3>Interviewers</h3><ul><li><span class="avatar" aria-hidden="true">M</span>Max</li><li><span class="avatar" aria-hidden="true">R</span>Ria</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── COMMUNITY + CONTACT ───────────── -->
+    <section class="block" id="community">
+      <div class="wrap two two-top">
+        <div class="reveal">
+          <p class="kicker"><span></span>Community</p>
+          <h2>The meet never ends.</h2>
+          <p class="body">Our Discord is where builds get posted, races get called out and the next meet gets planned. It is also where staff answer questions.</p>
+          <div class="panel discord">
+            <img id="dcIcon" alt="" hidden>
+            <div class="dc-body">
+              <b id="dcName">StreetKings on Discord</b>
+              <span class="muted small" id="dcCounts">Builds, races, meets and support</span>
+            </div>
+            <a class="btn btn-accent btn-sm" data-link="discord" href="#community" target="_blank" rel="noopener">Join</a>
+          </div>
+          <ul class="ticks ticks-sm">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Post in #gallery</b><span>Every picture posted there shows up on this site.</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Get featured</b><span>Staff pin the best build and it leads this page.</span></div></li>
+          </ul>
+        </div>
+        <div class="panel contact reveal">
+          <h3>Talk to the staff</h3>
+          <p class="muted small">Questions, business enquiries or a report. This goes straight to our staff on Discord.</p>
+          <form class="form" id="contactForm" novalidate>
+            <div class="row">
+              <label>Name<input name="name" maxlength="60" required autocomplete="name"></label>
+              <label>Discord username<input name="discord" maxlength="40" required placeholder="yourname"></label>
+            </div>
+            <label>Topic
+              <select name="topic">
+                <option>Question</option>
+                <option>Business enquiry</option>
+                <option>Report a problem</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Message<textarea name="message" rows="4" maxlength="1500" required></textarea></label>
+            <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <button class="btn btn-accent" type="submit" id="sendBtn">Send to staff</button>
+            <p class="form-msg" id="formMsg" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div>
+        <img class="foot-mark" src="assets/wordmark.webp" alt="StreetKings" width="180" height="50">
+        <p class="muted">Fuel your soul, drive your dreams.</p>
+      </div>
+      <nav aria-label="Footer">
+        <b>Explore</b>
+        <a href="#about">About</a><a href="#features">Features</a><a href="#gallery">Gallery</a><a href="#rules">Rules</a><a href="#team">Team</a>
+      </nav>
+      <nav aria-label="Community">
+        <b>Community</b>
+        <a data-link="discord" href="#community" target="_blank" rel="noopener">Discord</a>
+        <a data-link="connect" href="#join" target="_blank" rel="noopener">Join the server</a>
+        <a href="#leaderboard">Leaderboard</a><a href="#community">Contact staff</a>
+      </nav>
+      <img class="foot-crown" src="assets/logo.webp" alt="StreetKings crown logo" width="120" height="120" loading="lazy">
+    </div>
+    <div class="wrap foot-base">
+      <span>&copy; <span id="year"></span> StreetKings Roleplay</span>
+      <span>Not affiliated with Rockstar Games, Take-Two Interactive or Cfx.re.</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Picture viewer" hidden>
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <figure>
+      <img id="lbImg" alt="">
+      <figcaption><span id="lbCap"></span><span id="lbPos"></span></figcaption>
+    </figure>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <script type="module" src="assets/app.js?v=7"></script>
+</body>
+</html>
