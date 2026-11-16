@@ -1,4 +1,4 @@
-# StreetKings website (free hosting on Cloudflare Pages)
+# StreetKings website (free hosting on Cloudflare Workers)
 
 Static site + three small server functions:
 - `/api/gallery`  shows the latest images from your Discord #gallery channel
@@ -7,16 +7,18 @@ Static site + three small server functions:
 
 The webhook and bot token live in Cloudflare settings, never in these files, so nobody can steal them from the page.
 
+Folder layout: `public/` is the site, `functions/api/` the three handlers, `worker.js` routes `/api/*` to them, `wrangler.jsonc` tells Cloudflare how to build it.
+
 ## 1. Put the files on GitHub (free, no git needed)
-1. github.com > New repository > name it `streetkings-site` > Create.
-2. "uploading an existing file" > drag in everything inside this folder (index.html, assets, functions, README.md) > Commit.
+1. github.com > your `streetkings-site` repository.
+2. Upload everything in this folder (public, functions, worker.js, wrangler.jsonc, README.md) > Commit.
+   If an older upload has `index.html` or `assets` at the top level, delete those (the site now lives in `public/`).
 
-## 2. Host it on Cloudflare Pages (free)
-1. dash.cloudflare.com > Workers & Pages > Create > Pages > Connect to Git > pick `streetkings-site`.
-2. Framework preset: None. Build command: empty. Output directory: `/`. Save and Deploy.
-3. You get `streetkings-site.pages.dev`. A custom domain can be added later under Custom domains.
+## 2. Cloudflare (Workers)
+The repository is connected to the Worker `streetkings-site`; every commit redeploys it by itself.
+The Worker name in `wrangler.jsonc` must stay `streetkings-site`.
 
-## 3. Settings > Variables and Secrets (Production), then redeploy
+## 3. Worker > Settings > Variables and Secrets
 | Name | Type | Value |
 |---|---|---|
 | `DISCORD_WEBHOOK` | Secret | a NEW webhook URL for your staff/contact channel |
@@ -24,7 +26,7 @@ The webhook and bot token live in Cloudflare settings, never in these files, so 
 | `GALLERY_CHANNEL_ID` | Text | ID of #gallery |
 | `CFX_CODE` | Text | the code from your cfx.re/join/xxxxxx link |
 
-Any one left empty just switches that part off; the rest of the site still works.
+Any one left empty just switches that part off; the rest of the site still works. After saving, open the newest deployment or push any commit so the Worker picks them up.
 
 ## 4. Gallery bot (Discord can only be read by a bot, webhooks can only post)
 1. discord.com/developers > your Streetkings app > Bot > Reset Token > copy it into `DISCORD_BOT_TOKEN`.
@@ -35,6 +37,6 @@ Any one left empty just switches that part off; the rest of the site still works
 Every image ever posted in #gallery shows on the site, newest first. The next 100 posts load by themselves as visitors scroll down. New posts appear within 10 minutes, and a deleted post leaves the site on the next refresh.
 
 ## 5. Your own pictures
-- `assets/hero.jpg` big background photo behind the hero (1920x1080 or wider). Optional.
-- `assets/wordmark.png` white STREET KINGS logo on a transparent background, shown instead of the crown logo. Optional.
-- Links: top of `assets/app.js` (`discord`, `connect`).
+- `public/assets/hero.jpg` big background photo behind the hero (1920x1080 or wider). Optional.
+- `public/assets/wordmark.png` white STREET KINGS logo on a transparent background, shown instead of the crown logo. Optional.
+- Links: top of `public/assets/app.js` (`discord`, `connect`).
