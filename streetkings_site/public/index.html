@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StreetKings Roleplay</title>
+  <meta name="description" content="StreetKings is a car community roleplay city on FiveM. Build project cars, tune your ride, hit the drag strip and run your own shop.">
+  <meta property="og:title" content="StreetKings Roleplay">
+  <meta property="og:description" content="Car community roleplay on FiveM. Build it, tune it, run it.">
+  <meta property="og:image" content="assets/og.jpg">
+  <meta name="theme-color" content="#141414">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=4">
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="StreetKings home">
+      <img src="assets/logo.webp" alt="" width="40" height="40">
+      <span>StreetKings</span>
+    </a>
+    <nav class="links" id="links">
+      <a href="#about">About</a>
+      <a href="#features">The city</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#join">How to join</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-sm btn-discord" data-link="discord" href="#" target="_blank" rel="noopener">Discord</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-in">
+        <img class="wordmark" id="wordmark" src="assets/wordmark.png" alt="StreetKings">
+        <img class="hero-logo hidden" id="heroLogo" src="assets/logo.webp" alt="StreetKings" width="320" height="320">
+        <p class="kicker">Car community roleplay</p>
+        <h1>Build it. Tune it.<br>Run the streets.</h1>
+        <p class="lead">Project cars from scrapyard wrecks, real mechanics, drag nights and car meets. A FiveM city made by car people, for car people.</p>
+        <div class="cta">
+          <a class="btn btn-main" data-link="connect" href="#join" target="_blank" rel="noopener">Join the City</a>
+          <a class="btn btn-ghost btn-discord" data-link="discord" href="#" target="_blank" rel="noopener">Join the Discord</a>
+        </div>
+        <div class="status hidden" id="status"><span class="dot"></span><b id="statusText">Checking the city</b></div>
+      </div>
+    </section>
+
+    <section class="block" id="about">
+      <div class="wrap two">
+        <div>
+          <p class="kicker">About</p>
+          <h2>A city that runs on gasoline</h2>
+          <p>StreetKings is a car community first. Every system in the city is built around the cars: where you find them, how you fix them, how you tune them and where you show them off.</p>
+          <p>Pull a wreck off the scrapyard lot, strip it down bolt by bolt, put it back together and register it. Then take it to the strip, a meet or the mountains. Your car, your build, your story.</p>
+        </div>
+        <ul class="facts">
+          <li><b>Real wear</b><span>Parts, tyres and fluids wear out and need a mechanic</span></li>
+          <li><b>Player run</b><span>Shops, garages and businesses owned by players</span></li>
+          <li><b>Serious RP</b><span>Police, EMS and mechanics played by real people</span></li>
+          <li><b>Fair economy</b><span>Earned money, server checked, no shortcuts</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block alt" id="features">
+      <div class="wrap">
+        <p class="kicker">The city</p>
+        <h2>What you can do</h2>
+        <div class="grid">
+          <article class="card"><span class="ic">01</span><h3>Project cars</h3><p>Buy a wreck from the scrapyard, find its hidden faults, strip it and rebuild it into a street car.</p></article>
+          <article class="card"><span class="ic">02</span><h3>Tuning and stance</h3><p>Engine, gearbox and suspension upgrades, plus stance and fitment to get the look just right.</p></article>
+          <article class="card"><span class="ic">03</span><h3>Drag strip</h3><p>Line up, launch and run the timer. Settle it at the strip instead of on the highway.</p></article>
+          <article class="card"><span class="ic">04</span><h3>Real mechanics</h3><p>Mechanic shops repair, tune and bill for their work. Neglect your car and it will let you know.</p></article>
+          <article class="card"><span class="ic">05</span><h3>Run a business</h3><p>Open a shop, hire your crew, set your prices and keep the books. The city runs on players.</p></article>
+          <article class="card"><span class="ic">06</span><h3>Meets and crews</h3><p>Car meets, cruises and crews. Bring the build out and let the city see it.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="gallery">
+      <div class="wrap">
+        <div class="head-row">
+          <div>
+            <p class="kicker">Gallery</p>
+            <h2>Straight from the city</h2>
+          </div>
+          <a class="btn btn-sm btn-ghost btn-discord" data-link="discord" href="#" target="_blank" rel="noopener">Post yours in #gallery</a>
+        </div>
+        <article class="featured hidden" id="featured">
+          <div class="feat-img"><img id="featImg" alt=""></div>
+          <div class="feat-body">
+            <p class="kicker">Build of the week</p>
+            <div class="feat-by"><img id="featAvatar" alt="" class="hidden"><b id="featAuthor"></b></div>
+            <p id="featCaption"></p>
+          </div>
+        </article>
+        <div class="gallery" id="galleryGrid"></div>
+        <div class="cta center"><button class="btn btn-ghost hidden" id="galleryMore" type="button">Load more</button></div>
+        <p class="muted center hidden" id="galleryEmpty">The gallery fills up from our Discord #gallery channel. Join and post your best shots.</p>
+      </div>
+    </section>
+
+    <section class="block alt" id="leaderboard">
+      <div class="wrap">
+        <div class="head-row">
+          <div>
+            <p class="kicker">Drag strip</p>
+            <h2>Fastest in the city</h2>
+          </div>
+          <p class="muted small" id="lbUpdated"></p>
+        </div>
+        <div class="lb-tabs" id="lbTabs" role="tablist"></div>
+        <div class="lb-grid">
+          <div class="lb-card">
+            <table class="lb-table">
+              <thead><tr><th>#</th><th>Driver</th><th>Car</th><th>Time</th><th class="hide-sm">Trap</th><th class="hide-sm">RT</th><th class="hide-sm">Date</th></tr></thead>
+              <tbody id="lbBody"><tr><td colspan="7" class="muted center">Loading times</td></tr></tbody>
+            </table>
+          </div>
+          <aside class="lb-card lb-elo hidden" id="lbEloCard">
+            <h3>Top racers</h3>
+            <p class="muted small">Rating from head-to-head races</p>
+            <ol id="lbElo"></ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt" id="join">
+      <div class="wrap">
+        <p class="kicker">How to join</p>
+        <h2>Four steps to the streets</h2>
+        <ol class="steps">
+          <li><b>Get FiveM</b><span>Own GTA V on PC and install FiveM from fivem.net.</span></li>
+          <li><b>Join the Discord</b><span>Announcements, rules, support and the community live there.</span></li>
+          <li><b>Read the rules</b><span>Know them before you play. Everyone gets the same city.</span></li>
+          <li><b>Connect</b><span>Hit Join the City, make your character and claim your starter car.</span></li>
+        </ol>
+        <div class="cta center">
+          <a class="btn btn-main" data-link="connect" href="#" target="_blank" rel="noopener">Join the City</a>
+          <a class="btn btn-ghost btn-discord" data-link="discord" href="#" target="_blank" rel="noopener">Join the Discord</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="contact">
+      <div class="wrap narrow">
+        <p class="kicker">Contact</p>
+        <h2>Talk to the staff</h2>
+        <p class="muted">Questions, business enquiries or a report. This goes straight to our staff on Discord.</p>
+        <form class="form" id="contactForm" novalidate>
+          <div class="row">
+            <label>Name<input name="name" maxlength="60" required autocomplete="name"></label>
+            <label>Discord username<input name="discord" maxlength="40" required placeholder="yourname"></label>
+          </div>
+          <label>Topic
+            <select name="topic">
+              <option>Question</option>
+              <option>Business enquiry</option>
+              <option>Report a problem</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" rows="5" maxlength="1500" required></textarea></label>
+          <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+          <button class="btn btn-main" type="submit" id="sendBtn">Send to staff</button>
+          <p class="form-msg" id="formMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <img src="assets/skrp.png" alt="skrp" width="96" height="96" onerror="this.remove()">
+    <p>&copy; <span id="year"></span> StreetKings Roleplay</p>
+    <p class="muted">Not affiliated with Rockstar Games, Take-Two Interactive or Cfx.re.</p>
+  </footer>
+
+  <div class="lightbox hidden" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <img id="lbImg" alt="">
+    <p id="lbCap"></p>
+  </div>
+
+  <script src="assets/app.js?v=4"></script>
+</body>
+</html>

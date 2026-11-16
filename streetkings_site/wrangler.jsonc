@@ -1,0 +1,12 @@
+{
+  "name": "streetkings-site",
+  "main": "worker.js",
+  "compatibility_date": "2025-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  // keep the dashboard's Variables and Secrets when this file is deployed
+  "keep_vars": true
+}
